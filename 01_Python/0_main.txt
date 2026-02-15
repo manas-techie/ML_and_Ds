@@ -1,0 +1,151 @@
+1. BASIC SYNTAX & DATA TYPES
+   - Variables and constants
+   - Data types: int, float, string, boolean
+   - Type conversion and type checking
+   - Comments (single-line and multi-line)
+
+2. OPERATORS
+   - Arithmetic operators (+, -, *, /, //, %, **)
+   - Comparison operators (==, !=, >, <, >=, <=)
+   - Logical operators (and, or, not)
+   - Assignment operators (=, +=, -=, etc.)
+   - Identity operators (is, is not)
+   - Membership operators (in, not in)
+
+3. CONTROL FLOW
+   - if, elif, else statements
+   - Nested conditionals
+   - Ternary operator (conditional expressions)
+
+4. LOOPS
+   - for loops
+   - while loops
+   - Loop control statements (break, continue, pass)
+   - Nested loops
+   - else clause with loops
+
+5. DATA STRUCTURES (BUILT-IN)
+   - Lists: Creation, indexing, slicing, methods (append, extend, insert, 
+     remove, pop, sort, reverse)
+   - Tuples: Immutability, packing/unpacking, methods
+   - Dictionaries: Key-value pairs, methods (get, keys, values, items, 
+     update, pop)
+   - Sets: Unique elements, set operations (union, intersection, difference)
+
+6. STRING MANIPULATION
+   - String indexing and slicing
+   - String methods (upper, lower, strip, split, join, replace, find)
+   - String formatting (f-strings, .format(), % formatting)
+   - String concatenation and repetition
+
+7. FUNCTIONS
+   - Defining functions (def keyword)
+   - Parameters and arguments (positional, keyword, default)
+   - Return values (single and multiple)
+   - Variable scope (local, global, nonlocal)
+   - *args and **kwargs
+   - Lambda functions (anonymous functions)
+   - Recursion
+
+8. LIST COMPREHENSIONS
+   - Basic list comprehensions
+   - Conditional list comprehensions
+   - Nested list comprehensions
+   - Dictionary comprehensions
+   - Set comprehensions
+
+9. FILE HANDLING
+   - Opening and closing files
+   - Reading files (read, readline, readlines)
+   - Writing to files (write, writelines)
+   - File modes (r, w, a, r+, etc.)
+   - Using with statement (context managers)
+   - Working with CSV files (manual parsing)
+
+10. EXCEPTION HANDLING
+    - try-except blocks
+    - Multiple except clauses
+    - else and finally clauses
+    - Raising exceptions
+    - Custom exceptions
+
+11. OBJECT-ORIENTED PROGRAMMING (OOP)
+    - Classes and objects
+    - Constructors (__init__)
+    - Instance variables and class variables
+    - Methods (instance methods, class methods, static methods)
+    - Inheritance (single and multiple)
+    - Method overriding
+    - Encapsulation (private and protected members)
+    - Polymorphism
+    - Magic/Dunder methods (__str__, __repr__, __len__, etc.)
+
+12. MODULES AND PACKAGES
+    - Importing modules (import, from...import)
+    - Creating your own modules
+    - Understanding __name__ == "__main__"
+    - Exploring built-in modules (math, random, datetime, os, sys)
+
+13. ITERATORS AND GENERATORS
+    - Understanding iteration
+    - iter() and next()
+    - Creating custom iterators
+    - Generator functions (yield keyword)
+    - Generator expressions
+
+14. DECORATORS
+    - Function decorators
+    - Creating custom decorators
+    - Decorator with arguments
+    - Class decorators
+
+15. REGULAR EXPRESSIONS (re module - built-in)
+    - Pattern matching
+    - search, match, findall, sub functions
+    - Special characters and metacharacters
+
+16. WORKING WITH COLLECTIONS
+    - Enumerate
+    - Zip
+    - Map, filter, reduce (functools)
+    - Sorted and sort
+
+17. IMPORTANT BUILT-IN FUNCTIONS
+    - len, type, range, sum, min, max
+    - abs, round, pow
+    - all, any
+    - isinstance, callable
+
+18. ADVANCED CONCEPTS
+    - Closures
+    - First-class functions
+    - Higher-order functions
+    - Shallow vs deep copy
+    - Memory management basics
+
+================================================================================
+                    LEARNING PRIORITY FOR DATA SCIENCE/ML
+================================================================================
+
+HIGH PRIORITY (MUST KNOW):
+--------------------------
+1. Data types, operators, control flow, loops
+2. Lists, dictionaries, tuples
+3. Functions (including lambda)
+4. List comprehensions
+5. File handling
+6. String manipulation
+7. Exception handling
+
+MEDIUM PRIORITY (SHOULD KNOW):
+-------------------------------
+8. OOP basics (classes, objects, methods)
+9. Built-in functions
+10. Modules and imports
+11. Iterators and generators
+
+LOWER PRIORITY (NICE TO HAVE):
+-------------------------------
+12. Decorators
+13. Advanced OOP concepts
+14. Regular expressions

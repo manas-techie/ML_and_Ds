@@ -1,0 +1,36 @@
+========================================================================
+REVISION NOTES: MULTITHREADING & MULTIPROCESSING IN PYTHON
+========================================================================
+
+1. MULTITHREADING (For I/O-Bound Tasks)
+---------------------------------------
+* Best For: Tasks that wait for input/output operations (e.g., reading files, network requests, databases).
+* Concept (Concurrency): The system handles multiple tasks at once, allowing them to make progress without necessarily executing at the exact same millisecond. While one thread waits for I/O, another can run.
+* Basic Implementation (`threading` module):
+  - Create: `t1 = threading.Thread(target=my_func)`
+  - Start: `t1.start()`
+  - Wait to finish: `t1.join()`
+* Advanced Implementation (`concurrent.futures.ThreadPoolExecutor`):
+  - A high-level interface for managing a pool of threads asynchronously without manually creating/managing each one.
+  - Usage: `with ThreadPoolExecutor(max_workers=3) as executor:` followed by `executor.map(my_func, my_iterable)`.
+
+2. MULTIPROCESSING (For CPU-Bound Tasks)
+----------------------------------------
+* Best For: Tasks requiring heavy CPU power (e.g., complex calculations, data processing, machine learning).
+* Concept (Parallelism): True simultaneous execution. Each process runs completely independently on different CPU cores.
+* Basic Implementation (`multiprocessing` module):
+  - Create: `p1 = multiprocessing.Process(target=my_func)`
+  - Start: `p1.start()`
+  - Wait to finish: `p1.join()`
+* Advanced Implementation (`concurrent.futures.ProcessPoolExecutor`):
+  - Manages a pool of processes easily.
+  - Usage: `with ProcessPoolExecutor(max_workers=4) as executor:` followed by `executor.map(my_func, my_iterable)`.
+
+========================================================================
+WHY DO WE USE `if __name__ == "__main__":`?
+========================================================================
+You will notice this block is especially crucial in your `multiprocessing` scripts. Here is why:
+
+1. The "Spawn" Method: When Python creates a new process (especially on Windows), it doesn't just copy the memory of the parent process. Instead, it starts a brand-new Python interpreter and imports your script from scratch.
+2. Preventing Infinite Loops: If you do not hide your executable code (like creating and starting processes) inside the `if __name__ == "__main__":` block, the new child process will import the script, see the code to create a *new* process, and run it. That child will spawn another child, which spawns another child, leading to an infinite recursive loop of process creation that will crash your machine.
+3. Safe Execution: `__name__` is a special built-in variable. It is only set to `"__main__"` when the script is run directly by you. When a child process imports the script behind the scenes, `__name__` is set to the name of the module instead. Therefore, wrapping your execution code in this block ensures that only the parent process starts the workers.

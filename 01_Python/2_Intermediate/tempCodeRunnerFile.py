@@ -1,7 +1,3 @@
-# Create formatted output
-title = "Welcome"
-width = 50
-border = "=" * width
-print(border)
-print(title.center(width))
-print(border)
+text = "Hello World"
+index = text.find("World")      # 6 (index where found)
+print(index)

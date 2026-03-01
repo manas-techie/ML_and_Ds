@@ -1,8 +1,5 @@
-numbers = [1, 3, 5, 7, 9]
+fruits = ["apple", "banana", "cherry"]
 
-for num in numbers:
-    if num % 2 == 0:
-        print(f"Found even number: {num}")
-        break
-else:
-    print("No even numbers found")  # This executes (no break occurred)
+for index, fruit in enumerate(fruits):
+    # print(f"{index}: {fruit}")
+    print(f"{index}: {fruits[index]}")

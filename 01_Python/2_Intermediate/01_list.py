@@ -191,6 +191,8 @@ print(f"Cleared: {temp}")  # []
 original = [1, 2, 3]
 shallow_copy = original.copy()  # Creates new list
 reference = original            # Same list!
+print(original is shallow_copy)  #false
+print(original is reference)    # true
 
 original.append(4)
 print(f"Original: {original}")       # [1, 2, 3, 4]

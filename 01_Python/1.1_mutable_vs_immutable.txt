@@ -1,0 +1,111 @@
+===============================================================================
+              MUTABLE VS IMMUTABLE & MEMORY ASSIGNMENT IN PYTHON
+===============================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1. HOW PYTHON VARIABLES WORK (THE "LABEL" ANALOGY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In many languages (like C++), a variable is a "box" where you store data.
+In Python, a variable is a "name tag" (reference) attached to an object.
+
+Example: `x = 10`
+1. Python creates an integer object `10` in Heap memory at address (e.g., 0x123).
+2. Python creates the name `x` in the current namespace (Stack).
+3. `x` points to address 0x123.
+
+If you do `y = x`:
+- Python does NOT copy the number 10.
+- It just attaches a new tag `y` to the SAME object at 0x123.
+- Now both `x` and `y` refer to the same memory location.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 2. IMMUTABLE OBJECTS (Unchangeable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEFINITION: Objects whose state cannot be modified after they are created.
+TYPES: int, float, bool, str, tuple, frozenset, None
+
+BEHAVIOR:
+If you try to "change" an immutable object, Python actually creates a NEW object
+and moves the variable tag to the new one.
+
+Example:
+    x = 10      # x -> object(10) at 0x100
+    y = x       # y -> object(10) at 0x100
+    x = x + 1   # New object(11) created at 0x200. x -> 0x200.
+
+    Result:
+    - x is now 11.
+    - y is still 10 (pointing to the old object).
+    - The original object 10 was NOT changed.
+
+WHY THIS MATTERS:
+This makes immutable objects safe to pass around. You don't have to worry about
+a function unexpectedly changing your number or string.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 3. MUTABLE OBJECTS (Changeable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEFINITION: Objects whose value can change in place without changing their identity (memory address).
+TYPES: list, dict, set, bytearray
+
+BEHAVIOR:
+If you modify a mutable object, the memory address stays the same. All variables
+pointing to that object see the change.
+
+Example:
+    list_a = [1, 2]     # list_a -> list object at 0x500
+    list_b = list_a     # list_b -> SAME list object at 0x500
+
+    list_a.append(3)    # Modifies the object at 0x500 in place.
+
+    Result:
+    - list_a is [1, 2, 3]
+    - list_b is [1, 2, 3] (Because it's the SAME object!)
+
+THE "GOTCHA":
+    def add_item(item, my_list=[]):  # DANGER! Default arg is evaluated once.
+        my_list.append(item)
+        return my_list
+
+    print(add_item(1))  # [1]
+    print(add_item(2))  # [1, 2]  <- Keeps growing because the list is mutable and shared!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 4. MEMORY OPTIMIZATION (INTERNING)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Python tries to be efficient with memory for small immutable objects.
+
+SMALL INTEGERS:
+Python pre-allocates integers from -5 to 256.
+    a = 10
+    b = 10
+    a is b  # True (They point to the exact same pre-existing object)
+
+STRINGS:
+Short strings that look like identifiers (letters, digits, underscores) are often "interned" (cached).
+    s1 = "hello"
+    s2 = "hello"
+    s1 is s2 # True
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 5. CHECKING MEMORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tools to inspect variables:
+
+1. id(variable)
+   Returns the memory address (identity) of the object.
+   If `id(a) == id(b)`, they are the same object.
+
+2. is operator
+   Checks if two variables point to the same object.
+   `a is b` is the same as `id(a) == id(b)`.
+
+3. == operator
+   Checks if the VALUES are equal, regardless of whether they are the same object.
+   `[1, 2] == [1, 2]` is True (same value).
+   `[1, 2] is [1, 2]` is False (two different list objects created in memory).

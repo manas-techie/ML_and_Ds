@@ -79,7 +79,9 @@ print()
 fruits = ["apple", "banana", "cherry"]
 
 for index, fruit in enumerate(fruits):
-    print(f"{index}: {fruit}")
+    # print(f"{index}: {fruit}")
+    print(f"{index}: {fruits[index]}")
+
 # Output:
 # 0: apple
 # 1: banana

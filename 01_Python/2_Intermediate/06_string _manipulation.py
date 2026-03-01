@@ -1,5 +1,4 @@
 
-
 # STRING INDEXING AND SLICING
 
 text = "Python"

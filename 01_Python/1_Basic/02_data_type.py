@@ -104,7 +104,6 @@ from decimal import Decimal
 precise_result = Decimal('0.1') + Decimal('0.2')
 print(f"Using Decimal: {precise_result}")  # Exactly 0.3
 
-
 # 2.3 STRING (str)
 
 """

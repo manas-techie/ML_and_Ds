@@ -1,11 +1,14 @@
-import sys
+from datetime import datetime
 
-# List comprehension: Generates 1 million squares in memory
-squared_list = [x * x for x in range(1000000)]
-print(f"List size: {sys.getsizeof(squared_list)} bytes") 
-# Output: List size: ~8448728 bytes (8.4 MB)
+def add_created_at(cls):
+    cls.created_at = datetime.now()
+    return cls
 
-# Generator expression: Generates a lazy iterator
-squared_gen = (x * x for x in range(1000000))
-print(f"Generator size: {sys.getsizeof(squared_gen)} bytes") 
-# Output: Generator size: ~208 bytes
+@add_created_at
+class MyClass: 
+    def __init__(self, value):
+        self.value = value
+
+my_class = MyClass(20)
+print(my_class.value)
+print(my_class.created_at)

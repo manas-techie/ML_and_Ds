@@ -35,6 +35,7 @@ class Employee:
     company_name = "TechGroup"
 
     def __init__(self,name):
+        # instancce variable
         self.name = name
 
 emp1 = Employee("Alice")
